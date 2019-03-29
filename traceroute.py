@@ -1,6 +1,7 @@
-from __future__ import print_function, unicode_literals
+#requires Python 3 and Netmiko
 
 #imports
+from __future__ import print_function, unicode_literals
 from netmiko import Netmiko
 from getpass import getpass
 
@@ -14,12 +15,12 @@ userMAC = input("\nPlease enter the MAC address you would like to search. Must b
 # Ask user what IP would they like to connect to
 deviceName = input("\nPlease enter the IP of the switch you would like to search: ")
 
-# SSH Login Details
+# SSH login
 while True:
     try:
         myDevice = {
         'host': deviceName,
-        'username': '', #input your username here
+        'username': '', #type your user name here!
         'password': getpass(),
         'device_type': 'cisco_ios',
         }
@@ -32,9 +33,8 @@ while True:
         print ('\nLogin failed. Please try again.')
         continue
 
-#check to see if the MAC is on the switch
 print ('\nSearching MAC address...\n')
-
+#check to see if the MAC is on the switch
 while True:
     #issue show mac add add %USER MAC%
     showMAC =  net_connect.send_command('show mac add add ' +userMAC)
@@ -46,15 +46,16 @@ while True:
             MAClst.append(char)
         MACvarsplit = (''.join(MAClst).split('\n'))
 
+        #grabs only the part of output that contains VLAN
         MACint = MACvarsplit[3]
 
         #grabs VLAN number
         switchVLAN = MACint.split()[0]
         break
     else:
-        #if no results, tell the user MAC not found, check MAC or distro
+        #if no results, tell the user MAC not found, check MAC
         print ('\n*****ERROR: MAC NOT FOUND****\n')
-        #offer for them to change MAC and try again or change MAC and change distro
+        #offer for them to change MAC and try again or change MAC
         userMAC = input("\nPlease try again. MAC must be HHHH.HHHH.HHHH format: ")
         continue
 
@@ -85,6 +86,6 @@ while True:
     else:
         userMAC = input("\nPlease try again. MAC must be HHHH.HHHH.HHHH format: ")
         continue
+
 #make everything look pretty
 print ("MAC HAS BEEN FOUND!\n\nSwitch: " +switchName+ " (" +switchIP+ ")" "\nInterface: " +switchInt+ "\nVLAN: " +switchVLAN+ "\n")
-
