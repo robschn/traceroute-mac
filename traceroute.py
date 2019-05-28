@@ -15,7 +15,7 @@ userMAC = input("\nPlease enter the MAC address you would like to search. Must b
 # Ask user what IP would they like to connect to
 deviceName = input("\nPlease enter the IP of the switch you would like to search: ")
 
-username = input("Username: ")
+username = input("\nUsername: ")
 
 # SSH login
 while True:
