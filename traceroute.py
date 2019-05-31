@@ -66,9 +66,6 @@ print('Running traceroute. This may take up one minute...')
 while True:
     tracerouteMAC = net_connect.send_command('traceroute mac ' +userMAC+ ' ' + userMAC)
     if 'Layer 2 trace completed' in tracerouteMAC:
-
-        print('Finding access switch IP...')
-
         break
 
     else:
@@ -82,8 +79,6 @@ while True:
         PHONEint = PHONEvarsplit[0]
         outputPhoneIP = PHONEint.split()[-3]
         phoneIP = outputPhoneIP.strip(string.punctuation) #removes . from output
-        print('Finding access switch IP...')
-
         #issue sh ip arp phoneIP
         phoneARP = net_connect.send_command('sh ip arp ' + phoneIP)
 
