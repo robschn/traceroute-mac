@@ -116,4 +116,4 @@ outputSwitchIP = TRACEint.split()[2]
 switchIP = outputSwitchIP.strip(string.punctuation) #removes () from output
 
 #make everything look pretty
-print ("\nMAC FOUND!\n\nSwitch: " +switchName+ " (" +switchIP+ ")" "\nInterface: " +switchInt+ "\nVLAN: " +switchVLAN+ "\n")
+print ("\nMAC "+userMAC+" has been found!\n\nSwitch: " +switchName+ " (" +switchIP+ ")" "\nInterface: " +switchInt+ "\nVLAN: " +switchVLAN+ "\n")
