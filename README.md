@@ -20,3 +20,7 @@ Switch: switch1 (192.168.1.1)
 Interface: Gi1/0/1
 VLAN: 1
 ```
+### Requirements
+Python 3
+Netmiko
+Cisco IOS that supports "traceroute mac" command
