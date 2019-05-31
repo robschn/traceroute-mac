@@ -38,7 +38,7 @@ while True:
 print ('\nSearching MAC address...\n')
 #check to see if the MAC is on the switch
 while True:
-    #issue show mac add add %USER MAC%
+    #issue show mac add add USER MAC
     showMAC =  net_connect.send_command('show mac add add ' +userMAC)
     #checks to see if we get an output
     if 'Unicast Entries' in showMAC:
@@ -84,7 +84,7 @@ while True:
         outputSwitchIP = TRACEint.split()[2]
         switchIP = outputSwitchIP.strip(string.punctuation) #removes () from output
         break
-    #if traceroute is an error, the MAC is on the 4500 itself or not a valid MAC
+    #if traceroute is an error, the MAC is on the switch/router itself or not a valid MAC
     else:
         userMAC = input("\nPlease try again. MAC must be HHHH.HHHH.HHHH format: ")
         continue
