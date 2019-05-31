@@ -73,7 +73,7 @@ while True:
 
     else:
         #there is a phone in the middle of the switch and device
-    print ('This may take up one minute...')
+        print('This may take up one minute...')
 
         #grab phoneIP from output
         PHONElst = [];
