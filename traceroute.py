@@ -65,7 +65,7 @@ while True:
     tracerouteMAC = net_connect.send_command('traceroute mac ' +userMAC+ ' ' + userMAC)
     if 'Layer 2 trace completed' in tracerouteMAC:
         break
-    #if traceroute is an error, the MAC is on the switch/router itself or not a valid MAC
+
     else:
         #there is a phone in the middle of the switch and device
     print ('This may take up one minute...\n')
