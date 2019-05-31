@@ -64,25 +64,6 @@ while True:
 while True:
     tracerouteMAC = net_connect.send_command('traceroute mac ' +userMAC+ ' ' + userMAC)
     if 'Layer 2 trace completed' in tracerouteMAC:
-
-        #makes output into seperate strings
-        TRACElst = [];
-        for char in tracerouteMAC:
-            TRACElst.append(char)
-        TRACEvarsplit = (''.join(TRACElst).split('\n'))
-
-        #grabs only the part of the output that contains IP and interface of MAC
-        TRACEint = TRACEvarsplit[1]
-
-        #grabs switch name
-        switchName = TRACEint.split()[1]
-
-        #grabs switch interface
-        switchInt = TRACEint.split()[-1]
-
-        #grabs switch IP
-        outputSwitchIP = TRACEint.split()[2]
-        switchIP = outputSwitchIP.strip(string.punctuation) #removes () from output
         break
     #if traceroute is an error, the MAC is on the switch/router itself or not a valid MAC
     else:
@@ -114,6 +95,25 @@ while True:
         #issue traceroute mac phoneMAC phoneMAC
         tracerouteMAC = net_connect.send_command('traceroute mac ' + phoneMAC + ' ' + phoneMAC)
         break
+
+#makes output into seperate strings
+TRACElst = [];
+for char in tracerouteMAC:
+    TRACElst.append(char)
+TRACEvarsplit = (''.join(TRACElst).split('\n'))
+
+#grabs only the part of the output that contains IP and interface of MAC
+TRACEint = TRACEvarsplit[1]
+
+#grabs switch name
+switchName = TRACEint.split()[1]
+
+#grabs switch interface
+switchInt = TRACEint.split()[-1]
+
+#grabs switch IP
+outputSwitchIP = TRACEint.split()[2]
+switchIP = outputSwitchIP.strip(string.punctuation) #removes () from output
 
 #make everything look pretty
 print ("MAC HAS BEEN FOUND!\n\nSwitch: " +switchName+ " (" +switchIP+ ")" "\nInterface: " +switchInt+ "\nVLAN: " +switchVLAN+ "\n")
