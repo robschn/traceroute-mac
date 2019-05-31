@@ -21,7 +21,11 @@ Interface: Gi1/0/1
 VLAN: 1
 ```
 ### Requirements
+
 -Python 3
+
 -Netmiko
+
 -Cisco Discovery Protocol (CDP) enable on ALL switches and routers
+
 -Cisco IOS that supports the "traceroute mac" command
