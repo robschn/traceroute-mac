@@ -61,14 +61,19 @@ while True:
         userMAC = input("\nPlease try again. MAC must be HHHH.HHHH.HHHH format: ")
         continue
 
+print('MAC found! Running traceroute...\n')
+
 while True:
     tracerouteMAC = net_connect.send_command('traceroute mac ' +userMAC+ ' ' + userMAC)
     if 'Layer 2 trace completed' in tracerouteMAC:
+
+        print('Finding access switch IP...')
+
         break
 
     else:
         #there is a phone in the middle of the switch and device
-    print ('This may take up one minute...\n')
+    print ('This may take up one minute...')
 
         #grab phoneIP from output
         PHONElst = [];
