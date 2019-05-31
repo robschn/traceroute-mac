@@ -4,15 +4,10 @@
 from __future__ import print_function, unicode_literals
 from netmiko import Netmiko
 from getpass import getpass
-
 import string
 import socket
 
-
-#Ask for user input "What's your MAC?"
 userMAC = input("\nPlease enter the MAC address you would like to search. Must be HHHH.HHHH.HHHH format: ")
-
-# Ask user what IP would they like to connect to
 deviceName = input("Please enter the IP of the switch you would like to search: ")
 
 username = input("\nUsername: ")
@@ -28,7 +23,6 @@ while True:
         'device_type': 'cisco_ios',
         }
         print ('\nLogging in now...')
-        #connect to device
         net_connect = Netmiko(**myDevice)
         net_connect.enable()
         break
