@@ -64,7 +64,7 @@ while True:
 while True:
     tracerouteMAC = net_connect.send_command('traceroute mac ' +userMAC+ ' ' + userMAC)
     if 'Layer 2 trace completed' in tracerouteMAC:
-        
+
         #makes output into seperate strings
         TRACElst = [];
         for char in tracerouteMAC:
@@ -86,8 +86,34 @@ while True:
         break
     #if traceroute is an error, the MAC is on the switch/router itself or not a valid MAC
     else:
-        userMAC = input("\nPlease try again. MAC must be HHHH.HHHH.HHHH format: ")
-        continue
+        #there is a phone in the middle of the switch and device
+    print ('This may take up one minute...\n')
+
+        #grab phoneIP from output
+        PHONElst = [];
+        for char in tracerouteMAC:
+            PHONElst.append(char)
+        PHONEvarsplit = (''.join(PHONElst).split('\n'))
+        PHONEint = PHONEvarsplit[0]
+        outputPhoneIP = PHONEint.split()[-3]
+        phoneIP = outputPhoneIP.strip(string.punctuation) #removes . from output
+        print('Finding access switch IP...')
+
+        #issue sh ip arp phoneIP
+        phoneARP = net_connect.send_command('sh ip arp ' + phoneIP)
+
+        #grab phoneMAC
+        phoneMAClst = [];
+        for char in phoneARP:
+            phoneMAClst.append(char)
+        phoneMACvarsplit = (''.join(phoneMAClst).split('\n'))
+
+        phoneMACint = phoneMACvarsplit[1]
+        phoneMAC = phoneMACint.split()[3]
+
+        #issue traceroute mac phoneMAC phoneMAC
+        tracerouteMAC = net_connect.send_command('traceroute mac ' + phoneMAC + ' ' + phoneMAC)
+        break
 
 #make everything look pretty
 print ("MAC HAS BEEN FOUND!\n\nSwitch: " +switchName+ " (" +switchIP+ ")" "\nInterface: " +switchInt+ "\nVLAN: " +switchVLAN+ "\n")
