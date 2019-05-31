@@ -1,7 +1,7 @@
-# DevNet-traceroute
+## DevNet-traceroute
 This script can be used to find a user specified MAC with traceroute.
 
-# Usage
+### Usage
 
 1. Enter the MAC address of the device.
 
