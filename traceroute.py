@@ -87,12 +87,12 @@ while True:
         switchIP = outputSwitchIP.strip(string.punctuation) # removes () from output
 
         # tell the user MAC has been found and where it is
-        print ('\nMAC ' +userMAC+ ' has been found! \n\nSwitch: ' +switchName+ ' (' +switchIP+ ')\nInterface: ' +switchInt+ '\nVLAN: ' +switchVLAN)
+        print ('\nMAC ' +userMAC+ ' has been found! \n\nSwitch: ' +switchName+ ' (' +switchIP+ ')\nInterface: ' +switchInt+ '\nVLAN: ' +switchVLAN+ '\n')
         break
     # MAC is on current switch.
     elif 'Source and Destination on same port and no nbr!' in tracerouteMAC:
 	    # tell the user the MAC has been found and is on the current switch
-        print ('\nMAC ' +userMAC+ ' is on this switch! \n\nInterface: ' +currentSwitchInt+ '\nVLAN: ' +switchVLAN)
+        print ('\nMAC ' +userMAC+ ' is on this switch! \n\nInterface: ' +currentSwitchInt+ '\nVLAN: ' +switchVLAN+ '\n')
         break
 
     #there is a phone in the middle of the switch and device
@@ -140,7 +140,7 @@ while True:
         switchIP = outputSwitchIP.strip(string.punctuation) # removes () from output
 
         # tell the user MAC has been found and where it is
-        print ('\nMAC ' +userMAC+ ' has been found! \n\nSwitch: ' +switchName+ ' (' +switchIP+ ')\nInterface: ' +switchInt+ '\nVLAN: ' +switchVLAN)
+        print ('\nMAC ' +userMAC+ ' has been found! \n\nSwitch: ' +switchName+ ' (' +switchIP+ ')\nInterface: ' +switchInt+ '\nVLAN: ' +switchVLAN+ '\n')
         break
     else:
         print ('Error has occurred. Exit program...')
