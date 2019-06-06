@@ -21,10 +21,10 @@ VLAN: 1
 ```
 ### Requirements
 
--Python 3
+- Python 3
 
--Netmiko
+- Netmiko
 
--Cisco Discovery Protocol (CDP) enable on ALL switches and routers
+- Cisco Discovery Protocol (CDP) enable on ALL switches and routers
 
--Cisco IOS that supports the "traceroute mac" command
+- Cisco IOS that supports the "traceroute mac" command
