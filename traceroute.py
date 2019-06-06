@@ -10,24 +10,23 @@ import socket
 userMAC = input("\nPlease enter the MAC address you would like to search. Must be HHHH.HHHH.HHHH format: ")
 deviceName = input("Please enter the IP of the switch you would like to search: ")
 
-username = input("\nUsername: ")
-password = getpass()
-
 # SSH login
 while True:
     try:
+        username = input("Username: ")
+        password = getpass()
         myDevice = {
-        'host': deviceName,
+        'host': userSwitch,
         'username': username,
         'password': password,
         'device_type': 'cisco_ios',
         }
-        print ('\nLogging in now...')
+        print("Logging in now...")
         net_connect = Netmiko(**myDevice)
         net_connect.enable()
         break
     except:
-        print ('\nLogin failed. Please try again.')
+        print("Login failed. Please try again.\n")
         continue
 
 print ('Searching MAC address...')
@@ -63,7 +62,7 @@ while True:
 print('Running traceroute. This may take up one minute...')
 while True:
     tracerouteMAC = net_connect.send_command('traceroute mac ' +userMAC+ ' ' + userMAC)
-   
+
     # MAC address found on a connected switch
     if 'Layer 2 trace completed' in tracerouteMAC:
         # makes output into seperate strings
@@ -88,7 +87,7 @@ while True:
         # tell the user MAC has been found and where it is
         print ('\nMAC ' +userMAC+ ' has been found! \n\nSwitch: ' +switchName+ ' (' +switchIP+ ')\nInterface: ' +switchInt+ '\nVLAN: ' +switchVLAN+ '\n')
         break
-   
+
     # MAC address found on current switch.
     elif 'Source and Destination on same port and no nbr!' in tracerouteMAC:
 	# tell the user the MAC has been found and is on the current switch
